@@ -2,39 +2,40 @@
 
   var Moduler = {
     config : {
-      cssPath : '/css/',
-      jsPath : '/js/',
+      cssPath : 'css/',
+      jsPath : 'js/',
       media : 'screen'
     },
 
     init : function( options ) {
 
-      this.config.cssPath = options.cssPath || this.config.cssPath;
-      this.config.jsPath = options.jsPath || this.config.jsPath;
-
       this.cssElements = document.querySelectorAll('[data-moduler-css]')
       this.jsElements = document.querySelectorAll('[data-moduler-js]')
 
-      this.iterateCSS( this.cssElements, this.config.media, this.config.cssPath );
-      this.iterateJS( this.jsElements, this.config.jsPath );
+      if ( this.cssElements.length > 0 ) {
+        this.iterateCSS( this.cssElements, this.config.media, this.config.cssPath );
+      }
+      if ( this.jsElements.length > 0 ) {
+        this.iterateJS( this.jsElements, this.config.jsPath );
+      }
     },
 
     iterateCSS : function( elements, media, path ) {
-      elements.forEach(function( currentValue ) {
-        var name = currentValue.getAttribute('data-moduler-css');
+      for (var i = 0; i < elements.length; ++i) {
+        var name = elements[i].getAttribute('data-moduler-css');
         var fullpath = path + name;
 
         this.loadCSS( fullpath, media );
-      });
+      }
     },
 
     iterateJS : function( elements, path ) {
-      elements.forEach(function( currentValue ) {
-        var name = currentValue.getAttribute('data-moduler-js');
+      for (var i = 0; i < elements.length; ++i) {
+        var name = elements[i].getAttribute('data-moduler-js');
         var fullpath = path + name;
 
-        this.loadCSS( fullpath );
-      });
+        this.loadJS( fullpath );
+      }
     },
 
     loadCSS : function( href, media, callback ) {
@@ -88,5 +89,9 @@
     	return script;
     }
   }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+      Moduler.init();
+  });
 
 })(window, document)
