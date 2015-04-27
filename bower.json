@@ -1,0 +1,25 @@
+{
+  "name": "moduler",
+  "version": "0.0.0",
+  "authors": [
+    "Pavel Ševčík <pajaseviwow@gmail.com>"
+  ],
+  "description": "Library for modular inclusion of styles and scripts",
+  "keywords": [
+    "moduler",
+    "modular",
+    "css",
+    "js",
+    "loadcss",
+    "loadjs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
